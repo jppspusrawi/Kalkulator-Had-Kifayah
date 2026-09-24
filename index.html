@@ -8,49 +8,25 @@
   :root{
     --navy:#0d1b4c; --navy2:#152a6b; --gold:#c9a227; --gold-light:#f4e6b8;
     --red:#c0392b; --green:#1e7e34; --text:#1b1f2a; --muted:#5b6072;
-    --accent:#0e7c86; --accent-bg:#eafaf9;
   }
-  body.step-1{--accent:#0e7c86;--accent-bg:#eafaf9;}
-  body.step-2{--accent:#1e8449;--accent-bg:#eafaf0;}
-  body.step-3{--accent:#6c3fa0;--accent-bg:#f5eefc;}
-  body.step-4{--accent:#d4780c;--accent-bg:#fff4e8;}
-  body.step-5{--accent:#0d1b4c;--accent-bg:#eef1fb;}
-  body.step-6{--accent:#b23a6b;--accent-bg:#fdeef3;}
-
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
-  html{scroll-padding-top:env(safe-area-inset-top,0px);}
-  body{margin:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:var(--accent-bg);color:var(--text);
-       padding-top:env(safe-area-inset-top,0px);padding-bottom:calc(90px + env(safe-area-inset-bottom,0px));
-       transition:background .35s ease; font-size:16px;}
+  html{scroll-padding-top:14px;}
+  body{margin:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f4f6fb;color:var(--text);
+       padding-top:env(safe-area-inset-top,0px);padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));font-size:16px;}
 
   header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;padding:16px 14px 14px;text-align:center;border-bottom:5px solid var(--gold);}
   .logo-box{display:block;background:#fdfdfb;padding:12px 18px;border-radius:12px;box-shadow:0 3px 10px rgba(0,0,0,.18);margin:0 auto 10px;max-width:560px;width:94%;}
   header img{width:100%;height:auto;display:block;}
-  header h1{margin:4px 0 2px;font-size:1.08rem;line-height:1.3;}
-  header p{margin:0;color:var(--gold-light);font-size:.78rem;}
+  header h1{margin:4px 0 2px;font-size:1.15rem;line-height:1.3;}
+  header p{margin:0;color:var(--gold-light);font-size:.8rem;}
 
-  /* progress bar */
-  .progress-wrap{background:#fff;padding:12px 8px;position:sticky;top:0;z-index:20;box-shadow:0 2px 8px rgba(0,0,0,.06);overflow-x:auto;}
-  .progress{display:flex;align-items:flex-start;gap:2px;min-width:560px;max-width:780px;margin:0 auto;padding:0 6px;}
-  .p-step{flex:1;text-align:center;position:relative;}
-  .p-step .circ{width:30px;height:30px;border-radius:50%;background:#e4e7f1;color:var(--muted);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;margin:0 auto 4px;border:2px solid #e4e7f1;transition:all .3s;}
-  .p-step .lab{font-size:.66rem;color:var(--muted);font-weight:600;line-height:1.15;}
-  .p-step .line{position:absolute;top:15px;left:-50%;width:100%;height:3px;background:#e4e7f1;z-index:-1;}
-  .p-step:first-child .line{display:none;}
-  .p-step.done .circ{background:var(--accent-done,#1e8449);border-color:var(--accent-done,#1e8449);color:#fff;}
-  .p-step.done .line{background:var(--accent-done,#1e8449);}
-  .p-step.active .circ{background:var(--accent);border-color:var(--accent);color:#fff;transform:scale(1.12);}
-  .p-step.active .lab{color:var(--accent);}
+  .wrap{max-width:640px;margin:0 auto;padding:0;}
 
-  .wrap{max-width:640px;margin:0 auto;padding:16px 14px;}
-  .step-page{display:none;animation:fadein .35s ease;}
-  .step-page.active{display:block;}
-  @keyframes fadein{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
-
-  .step-head{margin-bottom:16px;}
-  .step-head .tag{display:inline-block;background:var(--accent);color:#fff;font-size:.68rem;font-weight:800;letter-spacing:.5px;padding:4px 11px;border-radius:20px;text-transform:uppercase;margin-bottom:8px;}
-  .step-head h2{margin:0 0 4px;color:var(--navy);font-size:1.25rem;}
-  .step-head p{margin:0;color:var(--muted);font-size:.86rem;}
+  .sect{padding:22px 14px 26px;}
+  .sect-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;}
+  .sect-head .num{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;}
+  .sect-head h2{margin:0 0 3px;color:var(--navy);font-size:1.18rem;}
+  .sect-head p{margin:0;color:var(--muted);font-size:.84rem;}
 
   .card{background:#fff;border-radius:14px;box-shadow:0 3px 14px rgba(13,27,76,.08);padding:18px;margin-bottom:14px;border-top:4px solid var(--accent);}
   .card h3{margin:0 0 4px;color:var(--navy);font-size:.95rem;}
@@ -72,11 +48,8 @@
   .section-title{font-size:.72rem;font-weight:800;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;margin:18px 0 8px;}
   .section-title:first-child{margin-top:0;}
 
-  .navbar{position:fixed;bottom:0;left:0;right:0;background:#fff;box-shadow:0 -3px 14px rgba(0,0,0,.1);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;z-index:30;}
-  .navbar button{flex:1;padding:14px;border:none;border-radius:10px;font-size:.95rem;font-weight:700;cursor:pointer;}
-  .btn-back{background:#eef0f6;color:var(--navy);}
-  .btn-next{background:var(--accent);color:#fff;}
-  .btn-back:disabled{opacity:.4;}
+  .btn-main{display:block;width:100%;padding:15px;border:none;border-radius:11px;font-size:1rem;font-weight:700;cursor:pointer;background:var(--accent);color:#fff;}
+  .btn-main:disabled{background:#c3c7d6;cursor:not-allowed;}
 
   .result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px;}
   @media(max-width:420px){.result-grid{grid-template-columns:1fr;}}
@@ -92,31 +65,25 @@
   .badge.katC{background:#2874a6;}
   .badge.katD{background:var(--green);}
   .note{background:#fff8e6;border:1px solid var(--gold-light);border-radius:8px;padding:10px 12px;font-size:.8rem;color:#7a5c00;margin-top:10px;}
-  table.rate,table.rumus{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:10px;}
-  table.rate td,table.rate th,table.rumus td,table.rumus th{padding:7px 8px;border:1px solid #e3e6f2;text-align:left;}
-  table.rate th{background:var(--navy);color:#fff;}
+  table.rumus{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:10px;}
+  table.rumus td{padding:7px 8px;border:1px solid #e3e6f2;text-align:left;}
   table.rumus td:first-child{color:var(--muted);font-weight:600;width:60%;}
   table.rumus td:last-child{text-align:right;font-weight:700;color:var(--navy);}
-  .edu-table{width:100%;border-collapse:collapse;font-size:.85rem;margin-top:6px;}
-  .edu-table th{background:var(--accent);color:#fff;padding:8px;text-align:left;}
-  .edu-table td{padding:8px;border-bottom:1px solid #eee;}
-  .edu-table tr:last-child td{font-weight:800;color:var(--navy);border-top:2px solid var(--accent);}
+  tr.grp td{background:var(--accent-bg);font-weight:800;color:var(--accent);text-transform:uppercase;font-size:.7rem;letter-spacing:.4px;}
   footer{text-align:center;color:var(--muted);font-size:.74rem;padding:16px;}
 
   .print-header{display:none;}
   @media print{
-    .navbar,.progress-wrap,header,footer,#finalCard,.no-print{display:none !important;}
+    header,footer,.no-print{display:none !important;}
     body{padding:0;background:#fff;}
-    .step-page{display:block !important;}
     .wrap{max-width:100%;}
+    .sect{break-inside:avoid;padding:14px 8px;}
     .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid;margin-bottom:10px;}
-    .step-head{break-before:page;margin-top:0;}
-    .step-page:first-of-type .step-head{break-before:auto;}
     .print-header{display:block !important;text-align:center;border-bottom:2px solid #0d1b4c;padding-bottom:10px;margin-bottom:16px;}
   }
 </style>
 </head>
-<body class="step-1">
+<body>
 
 <div class="print-header">
   <h1 style="margin:0;color:#0d1b4c;">Kalkulator Had Kifayah Pusrawi</h1>
@@ -129,42 +96,31 @@
   <p>Hospital Pakar PUSRAWI</p>
 </header>
 
-<div class="progress-wrap">
-  <div class="progress" id="progressBar">
-    <div class="p-step active" data-s="1"><div class="line"></div><div class="circ">1</div><div class="lab">Pemohon</div></div>
-    <div class="p-step" data-s="2"><div class="line"></div><div class="circ">2</div><div class="lab">Pendapatan</div></div>
-    <div class="p-step" data-s="3"><div class="line"></div><div class="circ">3</div><div class="lab">Tanggungan</div></div>
-    <div class="p-step" data-s="4"><div class="line"></div><div class="circ">4</div><div class="lab">Keperluan Asas</div></div>
-    <div class="p-step" data-s="5"><div class="line"></div><div class="circ">5</div><div class="lab">Kiraan</div></div>
-    <div class="p-step" data-s="6"><div class="line"></div><div class="circ">6</div><div class="lab">Pengesahan</div></div>
-  </div>
-</div>
-
 <div class="wrap">
 
-  <!-- STEP 1 -->
-  <div class="step-page active" id="page-1">
-    <div class="step-head"><span class="tag">Langkah 1 / 6</span><h2>Maklumat Pemohon</h2><p>Rekod asas pemohon bantuan wakalah.</p></div>
+  <!-- SEKSYEN 1 -->
+  <section class="sect" style="--accent:#0e7c86;--accent-bg:#eafaf9;background:#eafaf9;">
+    <div class="sect-head"><div class="num">1</div><div><h2>Maklumat Pemohon</h2><p>Rekod asas pemohon bantuan wakalah.</p></div></div>
     <div class="card">
       <div class="field"><label>Nama Pemohon</label><input type="text" id="nama" placeholder="Nama penuh mengikut Kad Pengenalan"></div>
       <div class="field"><label>No. Kad Pengenalan</label><input type="text" id="ic" placeholder="Contoh: 900101-14-5566"></div>
       <div class="field"><label>No. ID Staff <span class="hint">(jika kakitangan)</span></label><input type="text" id="idstaff" placeholder="Contoh: 012345"></div>
     </div>
-  </div>
+  </section>
 
-  <!-- STEP 2 -->
-  <div class="step-page" id="page-2">
-    <div class="step-head"><span class="tag">Langkah 2 / 6</span><h2>Pendapatan Isi Rumah</h2><p>Masukkan pendapatan kasar bulanan.</p></div>
+  <!-- SEKSYEN 2 -->
+  <section class="sect" style="--accent:#1e8449;--accent-bg:#eafaf0;background:#eafaf0;">
+    <div class="sect-head"><div class="num">2</div><div><h2>Pendapatan Isi Rumah</h2><p>Masukkan pendapatan kasar bulanan.</p></div></div>
     <div class="card">
       <div class="field"><label>Suami</label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="p_suami" value="0" min="0" inputmode="decimal"></div></div>
       <div class="field"><label>Isteri</label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="p_isteri" value="0" min="0" inputmode="decimal"></div></div>
       <div class="field"><label>Lain-lain Pendapatan <span class="hint">(anak, ibu bapa, penjaga, sewa rumah dll.)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="p_lain" value="0" min="0" inputmode="decimal"></div></div>
     </div>
-  </div>
+  </section>
 
-  <!-- STEP 3 -->
-  <div class="step-page" id="page-3">
-    <div class="step-head"><span class="tag">Langkah 3 / 6</span><h2>Tanggungan Keluarga</h2><p>Untuk pengiraan Had Kifayah rasmi MAIWP.</p></div>
+  <!-- SEKSYEN 3 -->
+  <section class="sect" style="--accent:#6c3fa0;--accent-bg:#f5eefc;background:#f5eefc;">
+    <div class="sect-head"><div class="num">3</div><div><h2>Tanggungan Keluarga</h2><p>Untuk pengiraan Had Kifayah rasmi MAIWP.</p></div></div>
 
     <div class="card">
       <h3>Kediaman Ketua Keluarga</h3><p class="sub">Pilih satu sahaja</p>
@@ -203,11 +159,11 @@
         <label><input type="radio" name="kenderaan" value="50"> 1.5cc ke bawah (RM50)</label>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- STEP 4 -->
-  <div class="step-page" id="page-4">
-    <div class="step-head"><span class="tag">Langkah 4 / 6</span><h2>Keperluan Asas Bulanan</h2><p>Perbelanjaan terperinci — asas Kategori Bantuan Wakalah PUSRAWI.</p></div>
+  <!-- SEKSYEN 4 -->
+  <section class="sect" style="--accent:#d4780c;--accent-bg:#fff4e8;background:#fff4e8;">
+    <div class="sect-head"><div class="num">4</div><div><h2>Keperluan Asas Bulanan</h2><p>Perbelanjaan terperinci — asas Kategori Bantuan Wakalah PUSRAWI.</p></div></div>
 
     <div class="card">
       <h3>Rumah Sewa/Beli (Bulanan)</h3>
@@ -231,11 +187,13 @@
       <div class="field"><label>Kos Kesihatan <span class="hint">RM50/orang</span></label><input type="number" id="pb_kesihatan" value="0" min="0"></div>
       <div class="field"><label>Ansuran Bulanan Kenderaan <span class="hint">(RM sebenar, jika ada)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="pb_ansuran" value="0" min="0" inputmode="decimal"></div></div>
     </div>
-  </div>
 
-  <!-- STEP 5 -->
-  <div class="step-page" id="page-5">
-    <div class="step-head"><span class="tag">Langkah 5 / 6</span><h2>Keputusan Kiraan</h2><p>Dijana secara automatik daripada maklumat langkah 2–4.</p></div>
+    <button class="btn-main no-print" onclick="kira()">🧮 Kira Keputusan</button>
+  </section>
+
+  <!-- SEKSYEN 5 -->
+  <section class="sect" style="--accent:#0d1b4c;--accent-bg:#eef1fb;background:#eef1fb;">
+    <div class="sect-head"><div class="num">5</div><div><h2>Keputusan Kiraan</h2><p>Dijana secara automatik daripada maklumat seksyen 2–4.</p></div></div>
 
     <div class="card">
       <h3>A. Status Asnaf (Had Kifayah Rasmi MAIWP)</h3>
@@ -262,11 +220,11 @@
       <table class="rumus" id="rumusanTable"></table>
       <div class="note">Kiraan ini merupakan panduan awal dan bukan keputusan muktamad kelayakan bantuan. Kelulusan &amp; peratusan pembiayaan tertakluk kepada semakan Jawatankuasa serta dokumen sokongan.</div>
     </div>
-  </div>
+  </section>
 
-  <!-- STEP 6 -->
-  <div class="step-page" id="page-6">
-    <div class="step-head"><span class="tag">Langkah 6 / 6</span><h2>Catatan &amp; Pengesahan</h2><p>Maklumat tanggungan &amp; persekolahan telah direkodkan di Langkah 5 (Rumusan Pegawai).</p></div>
+  <!-- SEKSYEN 6 -->
+  <section class="sect" style="--accent:#b23a6b;--accent-bg:#fdeef3;background:#fdeef3;">
+    <div class="sect-head"><div class="num">6</div><div><h2>Catatan &amp; Pengesahan</h2><p>Semak semula sebelum sahkan.</p></div></div>
 
     <div class="card">
       <div class="field"><label>Catatan Keperluan Tambahan / Lain-Lain <span class="hint">(pilihan — cth: keperluan ubatan, yuran, sewa dan lain-lain)</span></label>
@@ -284,10 +242,10 @@
       </div>
     </div>
 
-    <div class="card" id="finalCard">
+    <div class="card no-print" id="finalCard">
       <h3>Selesai</h3>
       <p class="sub">Semua data boleh dihantar ke Google Sheet apabila sambungan disediakan.</p>
-      <button onclick="hantar()" id="btnHantar" disabled style="width:100%;padding:14px;border:none;border-radius:10px;background:#c3c7d6;color:#fff;font-weight:700;font-size:.95rem;cursor:not-allowed;transition:.2s;">✅ Sahkan &amp; Hantar</button>
+      <button onclick="hantar()" id="btnHantar" disabled class="btn-main">✅ Sahkan &amp; Hantar</button>
     </div>
 
     <div class="card" id="successCard" style="display:none;text-align:center;">
@@ -299,13 +257,8 @@
         <button onclick="location.reload()" style="flex:1;padding:14px;border:none;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;">✔️ Selesai</button>
       </div>
     </div>
-  </div>
+  </section>
 
-</div>
-
-<div class="navbar">
-  <button class="btn-back" id="btnBack" onclick="prevStep()">← Kembali</button>
-  <button class="btn-next" id="btnNext" onclick="nextStep()">Seterusnya →</button>
 </div>
 
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
@@ -318,38 +271,8 @@
 </footer>
 
 <script>
-let step = 1;
-const totalSteps = 6;
-
 function num(id){ return parseFloat(document.getElementById(id).value) || 0; }
 function fmt(n){ return 'RM ' + n.toLocaleString('en-MY',{minimumFractionDigits:2, maximumFractionDigits:2}); }
-
-function updateProgress(){
-  document.querySelectorAll('.p-step').forEach(el=>{
-    const s = parseInt(el.dataset.s);
-    el.classList.remove('active','done');
-    if(s < step) el.classList.add('done');
-    else if(s === step) el.classList.add('active');
-  });
-}
-
-function showStep(n){
-  document.querySelectorAll('.step-page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+n).classList.add('active');
-  document.body.className = 'step-'+n;
-  updateProgress();
-  document.getElementById('btnBack').disabled = (n===1);
-  document.getElementById('btnNext').textContent = (n===totalSteps) ? 'Selesai ✓' : ((n===4) ? 'Kira Keputusan →' : 'Seterusnya →');
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-
-function nextStep(){
-  if(step===4){ kira(); }
-  if(step < totalSteps){ step++; showStep(step); }
-}
-function prevStep(){
-  if(step > 1){ step--; showStep(step); }
-}
 
 function kira(){
   const pendapatan = num('p_suami') + num('p_isteri') + num('p_lain');
@@ -405,24 +328,48 @@ function kira(){
   katEl.textContent = kategori; katEl.className = 'badge '+katClass;
 
   const jumlahTanggungan = num('hk_dewasa_kerja')+num('hk_dewasa_tak')+num('hk_remaja')+num('hk_kanak712')+num('hk_prasekolah')+num('hk_bawah4');
+
+  // --- Profil Tanggungan: jumlah keseluruhan + anggaran sumbangan RM ---
+  const kanakBawah4 = num('hk_bawah4'), praSekolah = num('hk_prasekolah'),
+        sekolahRendah = num('hk_kanak712'), sekolahMenengah = num('hk_remaja'),
+        anakIPT = num('pb_ipt'), okuSakitKronik = num('j1_oku')+num('j1_sakit'),
+        masalahKesihatan = num('pb_kesihatan');
+  const jumlahTanggunganKhas = kanakBawah4+praSekolah+sekolahRendah+sekolahMenengah+anakIPT+okuSakitKronik+masalahKesihatan;
+
+  const kosPendidikanAsas = num('pb_ipt')*613 + num('pb_sekolah')*408 + num('pb_bawah6')*175 + num('pb_tambang')*85;
+  const kosRawatanAsas = num('pb_kesihatan')*50;
+  const sumbanganPendidikan = kosPendidikanAsas * (pendidikan/100);
+  const sumbanganRawatan = kosRawatanAsas * (rawatan/100);
+  const jumlahSumbangan = sumbanganPendidikan + sumbanganRawatan;
+  const kelayakan = (statusAsnaf === 'TIDAK LAYAK') ? 'TIDAK LAYAK' : ('LAYAK — ' + statusAsnaf);
+
   const rumusan = [
     ['Nama Pemohon', document.getElementById('nama').value || '-'],
     ['No. Kad Pengenalan', document.getElementById('ic').value || '-'],
     ['Pendapatan Isi Rumah', fmt(pendapatan)],
     ['Had Kifayah', fmt(hadKifayah)],
     ['Baki/Kekurangan', fmt(bakiKifayah)],
-    ['Bil. Tanggungan', jumlahTanggungan],
-    ['Kanak-kanak Bawah 4 thn', num('hk_bawah4')],
-    ['Anak Pra Sekolah 5–6 thn', num('hk_prasekolah')],
-    ['Anak Sekolah Rendah 7–12 thn', num('hk_kanak712')],
-    ['Anak Sekolah Menengah 13–17 thn', num('hk_remaja')],
-    ['Anak Belajar IPTA/IPTS', num('pb_ipt')],
-    ['OKU / Sakit Kronik', num('j1_oku')+num('j1_sakit')],
-    ['Masalah Kesihatan', num('pb_kesihatan')],
+    ['Bil. Tanggungan (Had Kifayah)', jumlahTanggungan],
+    ['PROFIL TANGGUNGAN — GRP', ''],
+    ['Kanak-kanak Bawah 4 thn', kanakBawah4],
+    ['Anak Pra Sekolah 5–6 thn', praSekolah],
+    ['Anak Sekolah Rendah 7–12 thn', sekolahRendah],
+    ['Anak Sekolah Menengah 13–17 thn', sekolahMenengah],
+    ['Anak Belajar IPTA/IPTS', anakIPT],
+    ['OKU / Sakit Kronik', okuSakitKronik],
+    ['Masalah Kesihatan', masalahKesihatan],
+    ['Jumlah Keseluruhan Tanggungan Khas', jumlahTanggunganKhas],
+    ['RUMUSAN KELAYAKAN — GRP', ''],
     ['Rumah Berbayar', rumah2>0 ? 'Ya' : 'Tidak'],
-    ['Kategori Wakalah', kategori]
+    ['Kategori Wakalah', kategori],
+    ['Status Kelayakan', kelayakan],
+    ['Anggaran Sumbangan Rawatan', fmt(sumbanganRawatan)],
+    ['Anggaran Sumbangan Pendidikan', fmt(sumbanganPendidikan)],
+    ['Jumlah Keseluruhan Anggaran Sumbangan', fmt(jumlahSumbangan)]
   ];
-  document.getElementById('rumusanTable').innerHTML = rumusan.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('');
+  document.getElementById('rumusanTable').innerHTML = rumusan.map(r=>
+    r[0].endsWith('— GRP') ? `<tr class="grp"><td colspan="2">${r[0].replace(' — GRP','')}</td></tr>` : `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`
+  ).join('');
 
   window.dataPermohonan = {
     nama: document.getElementById('nama').value,
@@ -431,28 +378,25 @@ function kira(){
     pendapatan, hadKifayah, bakiKifayah, statusAsnaf,
     perbelanjaan, bakiBersih, kategori, rawatan, pendidikan,
     bilTanggungan: jumlahTanggungan,
-    kanakBawah4: num('hk_bawah4'),
-    praSekolah: num('hk_prasekolah'),
-    sekolahRendah: num('hk_kanak712'),
-    sekolahMenengah: num('hk_remaja'),
-    anakIPT: num('pb_ipt'),
-    okuSakitKronik: num('j1_oku')+num('j1_sakit'),
-    masalahKesihatan: num('pb_kesihatan'),
+    kanakBawah4, praSekolah, sekolahRendah, sekolahMenengah, anakIPT,
+    okuSakitKronik, masalahKesihatan,
+    jumlahTanggunganKhas, sumbanganRawatan, sumbanganPendidikan, jumlahSumbangan, kelayakan,
     rumahBerbayar: rumah2>0 ? 'Ya' : 'Tidak',
     tarikh: new Date().toISOString()
   };
+
+  document.querySelector('section:nth-of-type(5)').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 function toggleSubmit(){
   const btn = document.getElementById('btnHantar');
   const checked = document.getElementById('pengakuan').checked;
   btn.disabled = !checked;
-  btn.style.background = checked ? 'var(--accent)' : '#c3c7d6';
-  btn.style.cursor = checked ? 'pointer' : 'not-allowed';
 }
 
 function hantar(){
   if(!document.getElementById('pengakuan').checked) return;
+  if(!window.dataPermohonan){ kira(); }
   window.dataPermohonan.catatanTambahan = document.getElementById('catatanPendidikan').value;
 
   const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyodg6sqqsBtRoUJKbk16D4OswqVJdJ9P_0yvy56acC638p78pTH8BIKJQHOz9m3BSW4w/exec';
@@ -462,11 +406,8 @@ function hantar(){
 
   document.getElementById('finalCard').style.display = 'none';
   document.getElementById('successCard').style.display = 'block';
-  document.querySelector('.navbar').style.display = 'none';
-  window.scrollTo({top:0, behavior:'smooth'});
+  document.getElementById('successCard').scrollIntoView({behavior:'smooth', block:'start'});
 }
-
-showStep(1);
 </script>
 
 </body>
