@@ -21,6 +21,14 @@
   header p{margin:0;color:var(--gold-light);font-size:.8rem;}
 
   .wrap{max-width:640px;margin:0 auto;padding:0;}
+  .pair-grid{display:grid;grid-template-columns:1fr;gap:0;}
+  @media(min-width:900px){
+    body{max-width:1180px;margin:0 auto;}
+    .wrap{max-width:1100px;}
+    .pair-grid{grid-template-columns:1fr 1fr;align-items:start;gap:22px;}
+    .pair-grid .sect{border-radius:16px;}
+    .solo-sect{max-width:700px;margin:0 auto;border-radius:16px;}
+  }
 
   .sect{padding:22px 14px 26px;}
   .sect-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;}
@@ -98,6 +106,7 @@
 
 <div class="wrap">
 
+  <div class="pair-grid">
   <!-- SEKSYEN 1 -->
   <section class="sect" style="--accent:#0e7c86;--accent-bg:#eafaf9;background:#eafaf9;">
     <div class="sect-head"><div class="num">1</div><div><h2>Maklumat Pemohon</h2><p>Rekod asas pemohon bantuan wakalah.</p></div></div>
@@ -112,12 +121,14 @@
   <section class="sect" style="--accent:#1e8449;--accent-bg:#eafaf0;background:#eafaf0;">
     <div class="sect-head"><div class="num">2</div><div><h2>Pendapatan Isi Rumah</h2><p>Masukkan pendapatan kasar bulanan.</p></div></div>
     <div class="card">
-      <div class="field"><label>Suami</label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="p_suami" value="0" min="0" inputmode="decimal"></div></div>
-      <div class="field"><label>Isteri</label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="p_isteri" value="0" min="0" inputmode="decimal"></div></div>
-      <div class="field"><label>Lain-lain Pendapatan <span class="hint">(anak, ibu bapa, penjaga, sewa rumah dll.)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="p_lain" value="0" min="0" inputmode="decimal"></div></div>
+      <div class="field"><label>Suami</label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="p_suami" value="0.00" min="0" step="0.01" inputmode="decimal"></div></div>
+      <div class="field"><label>Isteri</label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="p_isteri" value="0.00" min="0" step="0.01" inputmode="decimal"></div></div>
+      <div class="field"><label>Lain-lain Pendapatan <span class="hint">(anak, ibu bapa, penjaga, sewa rumah dll.)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="p_lain" value="0.00" min="0" step="0.01" inputmode="decimal"></div></div>
     </div>
   </section>
+  </div>
 
+  <div class="pair-grid">
   <!-- SEKSYEN 3 -->
   <section class="sect" style="--accent:#6c3fa0;--accent-bg:#f5eefc;background:#f5eefc;">
     <div class="sect-head"><div class="num">3</div><div><h2>Tanggungan Keluarga</h2><p>Untuk pengiraan Had Kifayah rasmi MAIWP.</p></div></div>
@@ -178,21 +189,24 @@
       <div class="field"><label>Kos Dewasa (Bekerja/Tidak Bekerja) <span class="hint">RM412/orang — makan/minum 18+</span></label><input type="number" id="pb_dewasa" value="0" min="0"></div>
       <div class="field"><label>Kos Pengasuh <span class="hint">RM450/orang</span></label><input type="number" id="pb_pengasuh" value="0" min="0"></div>
       <div class="field"><label>Kos Tambang Sekolah <span class="hint">RM85/orang</span></label><input type="number" id="pb_tambang" value="0" min="0"></div>
-      <div class="field"><label>Bil Elektrik <span class="hint">(RM sebenar, jika ada)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="pb_elektrik" value="0" min="0" inputmode="decimal"></div></div>
-      <div class="field"><label>Bil Air <span class="hint">(RM sebenar, jika ada)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="pb_air" value="0" min="0" inputmode="decimal"></div></div>
+      <div class="field"><label>Bil Elektrik <span class="hint">(RM sebenar, jika ada)</span></label><input type="number" id="pb_elektrik" value="0" min="0" step="0.01"></div>
+      <div class="field"><label>Bil Air <span class="hint">(RM sebenar, jika ada)</span></label><input type="number" id="pb_air" value="0" min="0" step="0.01"></div>
       <div class="field"><label>Anak Belajar di IPT <span class="hint">RM613/orang</span></label><input type="number" id="pb_ipt" value="0" min="0"></div>
       <div class="field"><label>Anak Bersekolah 7–17 thn <span class="hint">RM408/orang</span></label><input type="number" id="pb_sekolah" value="0" min="0"></div>
       <div class="field"><label>Anak Tidak Bersekolah Bawah 6 thn <span class="hint">RM175/orang</span></label><input type="number" id="pb_bawah6" value="0" min="0"></div>
-      <div class="field"><label>Kos Pengangkutan <span class="hint">(RM sebenar, jika ada — minyak/pengangkutan awam)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="pb_pengangkutan" value="0" min="0" inputmode="decimal"></div></div>
+      <div class="field"><label>Kos Pengangkutan <span class="hint">(RM sebenar, jika ada — minyak/pengangkutan awam)</span></label><input type="number" id="pb_pengangkutan" value="0" min="0" step="0.01"></div>
       <div class="field"><label>Kos Kesihatan <span class="hint">RM50/orang</span></label><input type="number" id="pb_kesihatan" value="0" min="0"></div>
-      <div class="field"><label>Ansuran Bulanan Kenderaan <span class="hint">(RM sebenar, jika ada)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="pb_ansuran" value="0" min="0" inputmode="decimal"></div></div>
+      <div class="field"><label>Ansuran Bulanan Kenderaan <span class="hint">(RM sebenar, jika ada)</span></label><input type="number" id="pb_ansuran" value="0" min="0" step="0.01"></div>
     </div>
-
-    <button class="btn-main no-print" onclick="kira()">🧮 Kira Keputusan</button>
   </section>
+  </div>
+
+  <div class="no-print" style="max-width:700px;margin:0 auto 24px;padding:0 14px;">
+    <button onclick="kira()" style="display:block;width:100%;padding:16px;border:none;border-radius:12px;font-size:1.05rem;font-weight:800;cursor:pointer;background:linear-gradient(135deg,#c0392b,#a93226);color:#fff;box-shadow:0 4px 14px rgba(192,57,43,.4);letter-spacing:.3px;">🧮 KIRA KEPUTUSAN</button>
+  </div>
 
   <!-- SEKSYEN 5 -->
-  <section class="sect" style="--accent:#0d1b4c;--accent-bg:#eef1fb;background:#eef1fb;">
+  <section class="sect solo-sect" id="sect5" style="--accent:#0d1b4c;--accent-bg:#eef1fb;background:#eef1fb;">
     <div class="sect-head"><div class="num">5</div><div><h2>Keputusan Kiraan</h2><p>Dijana secara automatik daripada maklumat seksyen 2–4.</p></div></div>
 
     <div class="card">
@@ -223,7 +237,7 @@
   </section>
 
   <!-- SEKSYEN 6 -->
-  <section class="sect" style="--accent:#b23a6b;--accent-bg:#fdeef3;background:#fdeef3;">
+  <section class="sect solo-sect" style="--accent:#b23a6b;--accent-bg:#fdeef3;background:#fdeef3;">
     <div class="sect-head"><div class="num">6</div><div><h2>Catatan &amp; Pengesahan</h2><p>Semak semula sebelum sahkan.</p></div></div>
 
     <div class="card">
@@ -330,18 +344,19 @@ function kira(){
   const jumlahTanggungan = num('hk_dewasa_kerja')+num('hk_dewasa_tak')+num('hk_remaja')+num('hk_kanak712')+num('hk_prasekolah')+num('hk_bawah4');
 
   // --- Profil Tanggungan: jumlah keseluruhan + anggaran sumbangan RM ---
-  const kanakBawah4 = num('hk_bawah4'), praSekolah = num('hk_prasekolah'),
+  const dewasaBekerja = num('hk_dewasa_kerja'), dewasaTakBekerja = num('hk_dewasa_tak'),
+        kanakBawah4 = num('hk_bawah4'), praSekolah = num('hk_prasekolah'),
         sekolahRendah = num('hk_kanak712'), sekolahMenengah = num('hk_remaja'),
         anakIPT = num('pb_ipt'), okuSakitKronik = num('j1_oku')+num('j1_sakit'),
         masalahKesihatan = num('pb_kesihatan');
-  const jumlahTanggunganKhas = kanakBawah4+praSekolah+sekolahRendah+sekolahMenengah+anakIPT+okuSakitKronik+masalahKesihatan;
+  const jumlahTanggunganKhas = dewasaBekerja+dewasaTakBekerja+kanakBawah4+praSekolah+sekolahRendah+sekolahMenengah+anakIPT+okuSakitKronik+masalahKesihatan;
 
   const kosPendidikanAsas = num('pb_ipt')*613 + num('pb_sekolah')*408 + num('pb_bawah6')*175 + num('pb_tambang')*85;
   const kosRawatanAsas = num('pb_kesihatan')*50;
   const sumbanganPendidikan = kosPendidikanAsas * (pendidikan/100);
   const sumbanganRawatan = kosRawatanAsas * (rawatan/100);
   const jumlahSumbangan = sumbanganPendidikan + sumbanganRawatan;
-  const kelayakan = (statusAsnaf === 'TIDAK LAYAK') ? 'TIDAK LAYAK' : ('LAYAK — ' + statusAsnaf);
+  const kelayakan = (statusAsnaf === 'TIDAK LAYAK') ? 'TIDAK LAYAK' : ('LAYAK ' + statusAsnaf);
 
   const rumusan = [
     ['Nama Pemohon', document.getElementById('nama').value || '-'],
@@ -351,6 +366,8 @@ function kira(){
     ['Baki/Kekurangan', fmt(bakiKifayah)],
     ['Bil. Tanggungan (Had Kifayah)', jumlahTanggungan],
     ['PROFIL TANGGUNGAN — GRP', ''],
+    ['Dewasa Bekerja', dewasaBekerja],
+    ['Dewasa Tidak Bekerja/Bersekolah 18+', dewasaTakBekerja],
     ['Kanak-kanak Bawah 4 thn', kanakBawah4],
     ['Anak Pra Sekolah 5–6 thn', praSekolah],
     ['Anak Sekolah Rendah 7–12 thn', sekolahRendah],
@@ -359,13 +376,9 @@ function kira(){
     ['OKU / Sakit Kronik', okuSakitKronik],
     ['Masalah Kesihatan', masalahKesihatan],
     ['Jumlah Keseluruhan Tanggungan Khas', jumlahTanggunganKhas],
-    ['RUMUSAN KELAYAKAN — GRP', ''],
-    ['Rumah Berbayar', rumah2>0 ? 'Ya' : 'Tidak'],
-    ['Kategori Wakalah', kategori],
-    ['Status Kelayakan', kelayakan],
-    ['Anggaran Sumbangan Rawatan', fmt(sumbanganRawatan)],
-    ['Anggaran Sumbangan Pendidikan', fmt(sumbanganPendidikan)],
-    ['Jumlah Keseluruhan Anggaran Sumbangan', fmt(jumlahSumbangan)]
+    ['RUMUSAN HAD KIFAYAH — GRP', ''],
+    ['Kategori Wakalah Pusrawi', kategori],
+    ['Status Had Kifayah MAIWP', kelayakan]
   ];
   document.getElementById('rumusanTable').innerHTML = rumusan.map(r=>
     r[0].endsWith('— GRP') ? `<tr class="grp"><td colspan="2">${r[0].replace(' — GRP','')}</td></tr>` : `<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`
@@ -379,13 +392,14 @@ function kira(){
     perbelanjaan, bakiBersih, kategori, rawatan, pendidikan,
     bilTanggungan: jumlahTanggungan,
     kanakBawah4, praSekolah, sekolahRendah, sekolahMenengah, anakIPT,
+    dewasaBekerja, dewasaTakBekerja,
     okuSakitKronik, masalahKesihatan,
     jumlahTanggunganKhas, sumbanganRawatan, sumbanganPendidikan, jumlahSumbangan, kelayakan,
     rumahBerbayar: rumah2>0 ? 'Ya' : 'Tidak',
     tarikh: new Date().toISOString()
   };
 
-  document.querySelector('section:nth-of-type(5)').scrollIntoView({behavior:'smooth', block:'start'});
+  document.getElementById('sect5').scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 function toggleSubmit(){
