@@ -16,7 +16,7 @@
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   html{scroll-padding-top:14px;}
-  body{margin:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f4f6fb;color:var(--text);
+  body{margin:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f2ede3;color:var(--text);
        padding-top:env(safe-area-inset-top,0px);padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));font-size:16px;}
 
   header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 100%);color:#fff;padding:16px 14px 14px;text-align:center;border-bottom:5px solid var(--gold);}
@@ -186,7 +186,7 @@
     <div class="card">
       <h3>Rumah Sewa/Beli (Bulanan)</h3>
       <div class="radio-row">
-        <label><input type="radio" name="rumah2" value="1200" checked> Ya (RM1,200)</label>
+        <label><input type="radio" name="rumah2" value="1200" checked> Ya</label>
         <label><input type="radio" name="rumah2" value="0"> Tidak</label>
       </div>
     </div>
@@ -209,8 +209,8 @@
   </div>
 
   <!-- SEKSYEN 5: Catatan & Pengesahan -->
-  <section class="sect solo-sect" style="--accent:#b23a6b;--accent-bg:#fdeef3;background:#fdeef3;">
-    <div class="sect-head"><div class="num">5</div><div><h2>Catatan &amp; Pengesahan</h2><p>Semak semula sebelum sahkan.</p></div></div>
+  <section class="sect solo-sect no-print" style="--accent:#a13d63;--accent-bg:#fdf0f5;background:#fdf0f5;">
+    <div class="sect-head"><div class="num">5</div><div><h2>Catatan &amp; Pengesahan</h2><p>Semak semula sebelum kira kelayakan.</p></div></div>
 
     <div class="card">
       <div class="field"><label>Catatan Keperluan Tambahan / Lain-Lain <span class="hint">(pilihan — cth: keperluan ubatan, yuran, sewa dan lain-lain)</span></label>
@@ -223,21 +223,18 @@
         <input type="checkbox" id="pengakuan" onchange="toggleSubmit()" style="width:20px;height:20px;flex-shrink:0;margin-top:2px;accent-color:var(--accent);">
         <span style="font-size:.9rem;font-weight:600;color:var(--navy2);">Saya dengan ini mengesahkan bahawa maklumat yang dinyatakan adalah benar.</span>
       </label>
-      <div class="note" style="margin-top:12px;font-style:italic;line-height:1.5;">
-        Sabda Rasulullah ﷺ: "Jauhilah kalian daripada sikap suka berbohong kerana berbohong akan membawa kepada perbuatan kemaksiatan, dan perbuatan kemaksiatan akan membawa ke Neraka. Jika sekiranya seseorang itu sentiasa berdusta, maka kelak dia akan dicatat di sisi Allah SWT sebagai pendusta."<br><strong>(HR al-Bukhari)</strong>
-      </div>
+    </div>
+
+    <div class="card" style="text-align:center;">
+      <button onclick="tunjukKeputusan()" id="btnKira" disabled style="display:block;width:100%;padding:16px;border:none;border-radius:12px;font-size:1.05rem;font-weight:800;cursor:not-allowed;background:#c3c7d6;color:#fff;letter-spacing:.3px;transition:.2s;">🧮 KIRA KELAYAKAN</button>
     </div>
   </section>
 
-  <div class="no-print" style="max-width:700px;margin:0 auto 24px;padding:0 14px;">
-    <button onclick="kiraDanHantar()" id="btnHantar" disabled style="display:block;width:100%;padding:16px;border:none;border-radius:12px;font-size:1.05rem;font-weight:800;cursor:not-allowed;background:#c3c7d6;color:#fff;box-shadow:0 4px 14px rgba(0,0,0,.15);letter-spacing:.3px;transition:.2s;">🧮 KIRA &amp; SAHKAN PERMOHONAN</button>
-  </div>
-
   </div><!-- /formView -->
 
-  <!-- SEKSYEN 6: Keputusan & Rumusan (muncul selepas hantar) -->
-  <section class="sect solo-sect" id="resultSection" style="display:none;--accent:#0d1b4c;--accent-bg:#eef1fb;background:#eef1fb;">
-    <div class="sect-head"><div class="num">6</div><div><h2>Keputusan &amp; Rumusan</h2><p>Simpan atau cetak muka surat ini untuk lampiran borang KEW.</p></div></div>
+  <!-- SEKSYEN 6: Keputusan & Rumusan -->
+  <section class="sect solo-sect" id="resultSection" style="display:none;--accent:#0d1b4c;--accent-bg:#eef1f5;background:#eef1f5;">
+    <div class="sect-head"><div class="num">6</div><div><h2>Keputusan &amp; Rumusan</h2><p>Semak semula sebelum sahkan &amp; hantar.</p></div></div>
 
     <div class="card">
       <h3>A. Status Asnaf (Had Kifayah Rasmi MAIWP)</h3>
@@ -265,7 +262,12 @@
       <div class="note">Kiraan ini merupakan panduan awal dan bukan keputusan muktamad kelayakan bantuan. Kelulusan &amp; peratusan pembiayaan tertakluk kepada semakan Jawatankuasa serta dokumen sokongan.</div>
     </div>
 
-    <div class="card" style="text-align:center;">
+    <div class="no-print" id="actionRow" style="display:flex;gap:10px;max-width:700px;margin:0 auto 24px;">
+      <button onclick="kembaliEdit()" style="flex:1;padding:16px;border:none;border-radius:12px;font-size:.95rem;font-weight:700;cursor:pointer;background:#eef0f6;color:var(--navy);">⬅️ Kembali</button>
+      <button onclick="hantarData()" style="flex:2;padding:16px;border:none;border-radius:12px;font-size:.95rem;font-weight:800;cursor:pointer;background:linear-gradient(135deg,#c0392b,#a93226);color:#fff;box-shadow:0 4px 14px rgba(192,57,43,.4);">✅ Sahkan &amp; Hantar</button>
+    </div>
+
+    <div class="card" id="successCard" style="display:none;text-align:center;">
       <h3 style="color:var(--green);">✅ Maklumat Telah Dihantar</h3>
       <p class="sub">Maklumat yang dinyatakan telah disahkan dan sedia untuk semakan.</p>
       <div class="note" style="text-align:left;">Sebarang permohonan rasmi mestilah melalui borang <strong>KEW.36 / KEW.45</strong> dan disertakan dokumen sokongan yang lengkap.</div>
@@ -403,8 +405,9 @@ function kira(){
   };
 }
 
+// Langkah 5: pengakuan mesti ditandakan dahulu sebelum boleh kira kelayakan.
 function toggleSubmit(){
-  const btn = document.getElementById('btnHantar');
+  const btn = document.getElementById('btnKira');
   const checked = document.getElementById('pengakuan').checked;
   btn.disabled = !checked;
   btn.style.background = checked ? 'linear-gradient(135deg,#c0392b,#a93226)' : '#c3c7d6';
@@ -412,13 +415,29 @@ function toggleSubmit(){
   btn.style.boxShadow = checked ? '0 4px 14px rgba(192,57,43,.4)' : 'none';
 }
 
-function kiraDanHantar(){
-  if(!document.getElementById('pengakuan').checked){
-    alert('Sila tandakan Pengakuan dahulu sebelum menghantar.');
-    return;
-  }
-
+// Kira & papar keputusan sahaja — BELUM hantar ke Google Sheet.
+// Boleh disemak dahulu, atau tekan "Kembali" untuk betulkan maklumat.
+function tunjukKeputusan(){
+  if(!document.getElementById('pengakuan').checked) return;
   kira();
+
+  document.getElementById('formView').style.display = 'none';
+  document.getElementById('resultSection').style.display = 'block';
+  document.getElementById('actionRow').style.display = 'flex';
+  document.getElementById('successCard').style.display = 'none';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// Kembali ke borang untuk betulkan maklumat — data yang telah diisi kekal.
+function kembaliEdit(){
+  document.getElementById('resultSection').style.display = 'none';
+  document.getElementById('formView').style.display = 'block';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// Langkah 6: hantar sebenar ke Google Sheet.
+function hantarData(){
+  if(!window.dataPermohonan){ kira(); }
   window.dataPermohonan.catatanTambahan = document.getElementById('catatanPendidikan').value;
 
   const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyodg6sqqsBtRoUJKbk16D4OswqVJdJ9P_0yvy56acC638p78pTH8BIKJQHOz9m3BSW4w/exec';
@@ -426,8 +445,8 @@ function kiraDanHantar(){
   document.getElementById('payloadInput').value = JSON.stringify(window.dataPermohonan);
   document.getElementById('gsheetForm').submit();
 
-  document.getElementById('formView').style.display = 'none';
-  document.getElementById('resultSection').style.display = 'block';
+  document.getElementById('actionRow').style.display = 'none';
+  document.getElementById('successCard').style.display = 'block';
   window.scrollTo({top:0, behavior:'smooth'});
 }
 </script>
