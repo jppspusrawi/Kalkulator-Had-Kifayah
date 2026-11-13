@@ -54,8 +54,12 @@
   .rm-group .prefix{position:absolute;left:2px;top:2px;bottom:2px;display:flex;align-items:center;padding:0 12px;background:var(--gold-light);color:var(--navy);font-weight:800;font-size:.85rem;border-radius:7px 0 0 7px;}
   .rm-group input{padding-left:56px;}
   .bil-group{position:relative;}
-  .bil-group .prefix{position:absolute;left:2px;top:2px;bottom:2px;display:flex;align-items:center;padding:0 11px;background:var(--accent);color:#fff;font-weight:800;font-size:.68rem;letter-spacing:.3px;border-radius:7px 0 0 7px;}
-  .bil-group input{padding-left:52px;}
+  .bil-group .prefix{position:absolute;left:2px;top:2px;bottom:2px;display:flex;align-items:center;padding:0 11px;background:var(--accent);color:#fff;font-weight:800;font-size:.68rem;letter-spacing:.3px;border-radius:7px 0 0 7px;z-index:1;}
+  .bil-group input{padding-left:52px;padding-right:84px;text-align:center;font-weight:700;}
+  .bil-group .stepper{position:absolute;right:2px;top:2px;bottom:2px;display:flex;gap:4px;}
+  .bil-group .step-btn{width:36px;border:none;border-radius:7px;background:var(--accent-bg);color:var(--accent);font-size:1.15rem;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;}
+  .bil-group .step-btn:active{transform:scale(.9);}
+  .bil-group .step-btn:hover{filter:brightness(.95);}
 
   .radio-row{display:flex;gap:8px;flex-wrap:wrap;}
   .radio-row label{font-weight:500;font-size:.84rem;display:flex;align-items:center;gap:6px;background:var(--accent-bg);border:1.5px solid #d6dae8;padding:9px 12px;border-radius:9px;cursor:pointer;flex:1 1 auto;min-width:120px;}
@@ -139,6 +143,10 @@
 
 <div class="wrap">
 
+  <div class="no-print" style="text-align:right;margin:10px 0 -6px;">
+    <button type="button" onclick="kosongkanBorang()" style="background:#fff;border:1.5px solid #d6dae8;border-radius:8px;padding:7px 14px;font-size:.8rem;font-weight:700;color:var(--muted);cursor:pointer;">🗑️ Kosongkan Borang</button>
+  </div>
+
   <div id="formView">
 
   <div class="pair-grid">
@@ -168,33 +176,33 @@
   <section class="sect" style="--accent:#6c3fa0;--accent-bg:#f5eefc;background:#f5eefc;">
     <div class="sect-head"><div class="num">3</div><div><h2>Tanggungan Keluarga</h2><p><strong>Untuk pengiraan Had Kifayah rasmi MAIWP.</strong></p></div></div>
 
-    <div class="card">
+    <div class="card" id="hk_card_kediaman">
       <h3>Kediaman Ketua Keluarga</h3><p class="sub">Pilih satu sahaja</p>
       <div class="radio-row">
-        <label><input type="radio" name="rumah" value="620" checked> Sendiri (RM620)</label>
+        <label><input type="radio" name="rumah" value="620"> Sendiri (RM620)</label>
         <label><input type="radio" name="rumah" value="900"> Sewa Rendah (RM900)</label>
         <label><input type="radio" name="rumah" value="1120"> Sewa Sederhana (RM1120)</label>
       </div>
     </div>
 
     <div class="card">
-      <h3>Bilangan Tanggungan <span class="info-ico" onclick="this.classList.toggle('show')">ⓘ<span class="tip">Kotak <b>BIL</b> = taip <b>bilangan orang</b> (bukan RM). Cth: 2 dewasa bekerja → taip <b>2</b>. Sistem darab automatik ikut kadar.</span></span></h3><p class="sub">Ikut kategori umur / status</p>
-      <div class="field"><label>Dewasa Bekerja <span class="hint">RM315/orang</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="hk_dewasa_kerja" value="0" min="0"></div></div>
-      <div class="field"><label>Dewasa Tidak Bekerja/Bersekolah 18+ <span class="hint">RM245/orang</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="hk_dewasa_tak" value="0" min="0"></div></div>
-      <div class="field"><label>Remaja Bersekolah/Tidak 13–17 thn <span class="hint">RM290/orang</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="hk_remaja" value="0" min="0"></div></div>
-      <div class="field"><label>Kanak-kanak Bersekolah/Tidak 7–12 thn <span class="hint">RM250/orang</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="hk_kanak712" value="0" min="0"></div></div>
-      <div class="field"><label>Pra Sekolah 5–6 thn <span class="hint">RM230/orang</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="hk_prasekolah" value="0" min="0"></div></div>
-      <div class="field"><label>Kanak-kanak Bawah 4 thn <span class="hint">RM210/orang</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="hk_bawah4" value="0" min="0"></div></div>
+      <h3>Bilangan Tanggungan <span class="info-ico" onclick="this.classList.toggle('show')">ⓘ<span class="tip">Kotak <b>BIL</b> = taip <b>bilangan orang</b> (bukan RM). Cth: 2 dewasa bekerja → taip <b>2</b>. Sistem darab automatik ikut kadar.</span></span></h3><p class="sub">Ikut kategori umur / status &middot; <strong>Masukkan jumlah bilangan</strong> (bukan RM)</p>
+      <div class="field"><label>Dewasa Bekerja <span class="hint">RM315/orang — bilangan ahli dewasa yang bekerja</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="hk_dewasa_kerja" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('hk_dewasa_kerja',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('hk_dewasa_kerja',1)">+</button></span></div></div>
+      <div class="field"><label>Dewasa Tidak Bekerja/Bersekolah 18+ <span class="hint">RM245/orang — bilangan ahli dewasa 18+ tidak bekerja/tidak bersekolah</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="hk_dewasa_tak" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('hk_dewasa_tak',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('hk_dewasa_tak',1)">+</button></span></div></div>
+      <div class="field"><label>Belajar IPTA/IPTS (anak) <span class="hint">RM260/orang — bilangan anak belajar di IPTA/IPTS</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_ipt" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('j1_ipt',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('j1_ipt',1)">+</button></span></div></div>
+      <div class="field"><label>Remaja Bersekolah/Tidak 13–17 thn <span class="hint">RM290/orang — bilangan anak 13–17 tahun (bersekolah/tidak)</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="hk_remaja" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('hk_remaja',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('hk_remaja',1)">+</button></span></div></div>
+      <div class="field"><label>Kanak-kanak Bersekolah/Tidak 7–12 thn <span class="hint">RM250/orang — bilangan anak 7–12 tahun (bersekolah/tidak)</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="hk_kanak712" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('hk_kanak712',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('hk_kanak712',1)">+</button></span></div></div>
+      <div class="field"><label>Pra Sekolah 5–6 thn <span class="hint">RM230/orang — bilangan anak pra sekolah 5–6 tahun</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="hk_prasekolah" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('hk_prasekolah',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('hk_prasekolah',1)">+</button></span></div></div>
+      <div class="field"><label>Kanak-kanak Bawah 4 thn <span class="hint">RM210/orang — bilangan anak bawah 4 tahun</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="hk_bawah4" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('hk_bawah4',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('hk_bawah4',1)">+</button></span></div></div>
     </div>
 
     <div class="card">
-      <h3>Penambahan Had Kifayah <span class="info-ico" onclick="this.classList.toggle('show')">ⓘ<span class="tip">Kotak <b>BIL</b> = taip <b>bilangan kes/individu</b>. Cth: 1 kes sakit kronik → taip <b>1</b> (bukan RM260).</span></span></h3><p class="sub">RM260 setiap kes (Jadual 1)</p>
-      <div class="field"><label>Sakit Kronik</label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_sakit" value="0" min="0"></div></div>
-      <div class="field"><label>OKU</label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_oku" value="0" min="0"></div></div>
-      <div class="field"><label>Ibu Tunggal</label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_ibu" value="0" min="0"></div></div>
-      <div class="field"><label>Belajar IPTA/IPTS (anak)</label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_ipt" value="0" min="0"></div></div>
-      <div class="field"><label>Keluarga Bermasalah</label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_bermasalah" value="0" min="0"></div></div>
-      <div class="field"><label>Saudara Baru/Muslim</label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_saudara" value="0" min="0"></div></div>
+      <h3>Penambahan Had Kifayah <span class="info-ico" onclick="this.classList.toggle('show')">ⓘ<span class="tip">Kotak <b>BIL</b> = taip <b>bilangan kes/individu</b> (ikut kalkulator rasmi MAIWP). Cth: 2 ahli keluarga sakit kronik → taip <b>2</b> (bukan RM520).</span></span></h3><p class="sub">RM260 setiap kes (Jadual 1) &middot; <strong>Masukkan jumlah bilangan</strong> (bukan RM)</p>
+      <div class="field"><label>Saudara Baru/Muallaf <span class="hint">RM260/orang — bilangan ahli keluarga saudara baru/muallaf</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_saudara" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('j1_saudara',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('j1_saudara',1)">+</button></span></div></div>
+      <div class="field"><label>Sakit Kronik <span class="hint">RM260/orang — jumlah ahli keluarga/anak yang menghidap</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_sakit" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('j1_sakit',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('j1_sakit',1)">+</button></span></div></div>
+      <div class="field"><label>OKU — Orang Kelainan Upaya <span class="hint">RM260/orang — jumlah ahli keluarga/anak OKU</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_oku" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('j1_oku',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('j1_oku',1)">+</button></span></div></div>
+      <div class="field"><label>Ibu/Bapa Tunggal atau Tinggal <span class="hint">RM260/orang — bilangan ibu/bapa berstatus tunggal atau ditinggalkan</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_ibu" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('j1_ibu',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('j1_ibu',1)">+</button></span></div></div>
+      <div class="field"><label>Keluarga Bermasalah <span class="hint">RM260/orang — disahkan semasa semakan Jawatankuasa</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_bermasalah" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('j1_bermasalah',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('j1_bermasalah',1)">+</button></span></div></div>
     </div>
 
     <div class="card">
@@ -211,27 +219,27 @@
   <section class="sect" style="--accent:#d4780c;--accent-bg:#fff4e8;background:#fff4e8;">
     <div class="sect-head"><div class="num">4</div><div><h2>Keperluan Asas Bulanan</h2><p><strong>Perbelanjaan terperinci — asas Kategori Bantuan Wakalah PUSRAWI.</strong></p></div></div>
 
-    <div class="card">
+    <div class="card" id="pb_card_rumah">
       <h3>Rumah Sewa/Beli (Bulanan)</h3>
       <div class="radio-row">
-        <label><input type="radio" name="rumah2" value="1200" checked> Ya</label>
+        <label><input type="radio" name="rumah2" value="1200"> Ya</label>
         <label><input type="radio" name="rumah2" value="0"> Tidak</label>
       </div>
     </div>
 
     <div class="card">
-      <h3>Perbelanjaan Lain <span class="info-ico" onclick="this.classList.toggle('show')">ⓘ<span class="tip">Kotak <b>BIL</b> = taip <b>bilangan orang</b> (sistem darab ikut kadar). Cth: 3 anak sekolah → taip <b>3</b>.<br><br>Kotak <b>RM</b> = taip <b>jumlah RM sebenar</b>. Cth: bil elektrik RM85.50 → taip <b>85.50</b>.</span></span></h3>
-      <div class="field"><label>Dewasa (Bekerja/Tidak Bekerja) <span class="hint">RM412/orang — makan/minum 18+</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="pb_dewasa" value="0" min="0"></div></div>
-      <div class="field"><label>Anak Perlu Pengasuh <span class="hint">RM450/orang</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="pb_pengasuh" value="0" min="0"></div></div>
-      <div class="field"><label>Anak Guna Tambang Sekolah <span class="hint">RM85/orang</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="pb_tambang" value="0" min="0"></div></div>
-      <div class="field"><label>Bil Elektrik <span class="hint">(jika ada)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="pb_elektrik" value="0" min="0" step="0.01"></div></div>
-      <div class="field"><label>Bil Air <span class="hint">(jika ada)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="pb_air" value="0" min="0" step="0.01"></div></div>
-      <div class="field"><label>Anak Belajar di IPT <span class="hint">RM613/orang</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="pb_ipt" value="0" min="0"></div></div>
-      <div class="field"><label>Anak Bersekolah 7–17 thn <span class="hint">RM408/orang</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="pb_sekolah" value="0" min="0"></div></div>
-      <div class="field"><label>Anak Tidak Bersekolah Bawah 6 thn <span class="hint">RM175/orang</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="pb_bawah6" value="0" min="0"></div></div>
-      <div class="field"><label>Kos Pengangkutan <span class="hint">(jika ada — minyak/pengangkutan awam)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="pb_pengangkutan" value="0" min="0" step="0.01"></div></div>
-      <div class="field"><label>Ahli Keluarga — Kos Kesihatan <span class="hint">RM50/orang</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="pb_kesihatan" value="0" min="0"></div></div>
-      <div class="field"><label>Ansuran Bulanan Kenderaan <span class="hint">(jika ada)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="pb_ansuran" value="0" min="0" step="0.01"></div></div>
+      <h3>Perbelanjaan Lain <span class="info-ico" onclick="this.classList.toggle('show')">ⓘ<span class="tip">Kotak <b>BIL</b> = taip <b>bilangan orang</b> (sistem darab ikut kadar). Cth: 3 anak sekolah → taip <b>3</b>.<br><br>Kotak <b>RM</b> = taip <b>jumlah RM sebenar</b>. Cth: bil elektrik RM85.50 → taip <b>85.50</b>.</span></span></h3><p class="sub">Kotak <strong>BIL</strong> = masukkan jumlah bilangan &middot; Kotak <strong>RM</strong> = masukkan jumlah RM sebenar</p>
+      <div class="field"><label>Dewasa (Bekerja/Tidak Bekerja) <span class="hint">RM412/orang — bilangan ahli dewasa 18+ dlm rumah (kos makan/minum)</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="pb_dewasa" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('pb_dewasa',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('pb_dewasa',1)">+</button></span></div></div>
+      <div class="field"><label>Anak Perlu Pengasuh <span class="hint">RM450/orang — bilangan anak yg dihantar ke pengasuh/taska</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="pb_pengasuh" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('pb_pengasuh',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('pb_pengasuh',1)">+</button></span></div></div>
+      <div class="field"><label>Anak Guna Tambang Sekolah <span class="hint">RM85/orang — bilangan anak guna van/bas sekolah</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="pb_tambang" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('pb_tambang',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('pb_tambang',1)">+</button></span></div></div>
+      <div class="field"><label>Bil Elektrik <span class="hint">Jumlah RM sebenar bil TNB bulan terkini (jika ada)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="pb_elektrik" value="0" min="0" step="0.01"></div></div>
+      <div class="field"><label>Bil Air <span class="hint">Jumlah RM sebenar bil air bulan terkini (jika ada)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="pb_air" value="0" min="0" step="0.01"></div></div>
+      <div class="field"><label>Anak Belajar di IPT <span class="hint">RM613/orang — bilangan anak belajar di IPTA/IPTS</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="pb_ipt" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('pb_ipt',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('pb_ipt',1)">+</button></span></div></div>
+      <div class="field"><label>Anak Bersekolah 7–17 thn <span class="hint">RM408/orang — bilangan anak sekolah rendah/menengah</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="pb_sekolah" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('pb_sekolah',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('pb_sekolah',1)">+</button></span></div></div>
+      <div class="field"><label>Anak Tidak Bersekolah (6 Tahun Ke Bawah) <span class="hint">RM175/orang — bilangan anak belum bersekolah</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="pb_bawah6" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('pb_bawah6',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('pb_bawah6',1)">+</button></span></div></div>
+      <div class="field"><label>Kos Pengangkutan <span class="hint">Jumlah RM sebenar minyak/tambang pengangkutan awam bulanan (jika ada)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="pb_pengangkutan" value="0" min="0" step="0.01"></div></div>
+      <div class="field"><label>Ahli Keluarga — Kos Kesihatan <span class="hint">RM50/orang — bilangan ahli perlukan ubatan/rawatan rutin</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="pb_kesihatan" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('pb_kesihatan',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('pb_kesihatan',1)">+</button></span></div></div>
+      <div class="field"><label>Ansuran Bulanan Kenderaan <span class="hint">Jumlah RM sebenar ansuran bulanan kenderaan (jika ada)</span></label><div class="rm-group"><span class="prefix">RM</span><input type="number" id="pb_ansuran" value="0" min="0" step="0.01"></div></div>
     </div>
   </section>
   </div>
@@ -300,8 +308,8 @@
       <p class="sub">Maklumat yang dinyatakan telah disahkan dan sedia untuk semakan.</p>
       <div class="note" style="text-align:left;">Sebarang permohonan rasmi mestilah melalui borang <strong>KEW.36 / KEW.45</strong> dan disertakan dokumen sokongan yang lengkap.</div>
       <div class="no-print" style="display:flex;gap:10px;margin-top:14px;">
-        <button onclick="window.print()" style="flex:1;padding:14px;border:none;border-radius:10px;background:#eef0f6;color:var(--navy);font-weight:700;cursor:pointer;">🖨️ Cetak</button>
-        <button onclick="location.reload()" style="flex:1;padding:14px;border:none;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;">✔️ Selesai</button>
+        <button onclick="window.print()" style="flex:1;padding:14px;border:none;border-radius:10px;background:#eef0f6;color:var(--navy);font-weight:700;cursor:pointer;">🖨️ Cetak / Simpan PDF</button>
+        <button onclick="selesaiProses()" style="flex:1;padding:14px;border:none;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;">✔️ Selesai</button>
       </div>
     </div>
   </section>
@@ -317,6 +325,14 @@
   Berdasarkan Garis Panduan Agihan Zakat Wakalah MAIWP (Kemas Kini Jun 2026) &amp; Kalkulator Dalaman Wakalah Hospital Pakar PUSRAWI.
 </footer>
 
+<!-- Modal sendiri (gantikan alert()/confirm() browser — sesetengah in-app browser seperti WhatsApp/Instagram menyekat dialog bawaan) -->
+<div id="modalOverlay" class="no-print" style="display:none;position:fixed;inset:0;background:rgba(10,15,30,.6);z-index:999;align-items:center;justify-content:center;padding:20px;">
+  <div style="background:#fff;border-radius:14px;max-width:380px;width:100%;padding:22px;box-shadow:0 14px 44px rgba(0,0,0,.32);">
+    <p id="modalMsg" style="font-size:.95rem;color:var(--navy2);line-height:1.55;white-space:pre-line;margin:0 0 18px;"></p>
+    <div id="modalBtns" style="display:flex;gap:10px;"></div>
+  </div>
+</div>
+
 <script>
 function num(id){ return parseFloat(document.getElementById(id).value) || 0; }
 function fmt(n){ return 'RM ' + n.toLocaleString('en-MY',{minimumFractionDigits:2, maximumFractionDigits:2}); }
@@ -324,13 +340,14 @@ function fmt(n){ return 'RM ' + n.toLocaleString('en-MY',{minimumFractionDigits:
 function kira(){
   const pendapatan = num('p_suami') + num('p_isteri') + num('p_lain');
 
-  const rumah = parseFloat(document.querySelector('input[name=rumah]:checked').value);
+  const rumahEl = document.querySelector('input[name=rumah]:checked');
+  const rumah = rumahEl ? parseFloat(rumahEl.value) : 0;
   const hkAsas = rumah
     + num('hk_dewasa_kerja')*315 + num('hk_dewasa_tak')*245 + num('hk_remaja')*290
     + num('hk_kanak712')*250 + num('hk_prasekolah')*230 + num('hk_bawah4')*210;
 
-  const hkTambahan = num('j1_sakit')*260 + num('j1_oku')*260 + num('j1_ibu')*260 +
-      num('j1_ipt')*260 + num('j1_bermasalah')*260 + num('j1_saudara')*260;
+  const hkTambahan = num('j1_sakit')*260 + num('j1_oku')*260 + num('j1_ipt')*260 +
+      num('j1_ibu')*260 + num('j1_saudara')*260 + num('j1_bermasalah')*260;
 
   const hkKenderaan = parseFloat(document.querySelector('input[name=kenderaan]:checked').value) || 0;
 
@@ -356,7 +373,8 @@ function kira(){
   asnafEl.textContent = statusAsnaf; asnafEl.className = 'badge '+badgeClass;
   document.getElementById('r_asnaf_note').textContent = note;
 
-  const rumah2 = parseFloat(document.querySelector('input[name=rumah2]:checked').value);
+  const rumah2El = document.querySelector('input[name=rumah2]:checked');
+  const rumah2 = rumah2El ? parseFloat(rumah2El.value) : 0;
   const perbelanjaan = rumah2 + num('pb_dewasa')*412 + num('pb_pengasuh')*450 + num('pb_tambang')*85
     + num('pb_elektrik') + num('pb_air') + num('pb_ipt')*613 + num('pb_sekolah')*408
     + num('pb_bawah6')*175 + num('pb_pengangkutan') + num('pb_kesihatan')*50
@@ -391,7 +409,12 @@ function kira(){
   const jumlahSumbangan = sumbanganPendidikan + sumbanganRawatan;
   const kelayakan = (statusAsnaf === 'TIDAK LAYAK') ? 'TIDAK LAYAK' : ('LAYAK ' + statusAsnaf);
 
+  const tarikhSkrg = new Date();
+  const tarikhPaparan = tarikhSkrg.toLocaleDateString('ms-MY',{day:'2-digit',month:'2-digit',year:'numeric'})
+    + ' ' + tarikhSkrg.toLocaleTimeString('ms-MY',{hour:'2-digit',minute:'2-digit'});
+
   const rumusan = [
+    ['Tarikh & Masa', tarikhPaparan],
     ['Nama Pemohon', document.getElementById('nama').value || '-'],
     ['No. Kad Pengenalan', document.getElementById('ic').value || '-'],
     ['Pendapatan Isi Rumah', fmt(pendapatan)],
@@ -434,6 +457,114 @@ function kira(){
 }
 
 // Langkah 5: pengakuan mesti ditandakan dahulu sebelum boleh kira kelayakan.
+// ---------- Modal sendiri (gantikan alert()/confirm() — disekat oleh sesetengah in-app browser) ----------
+function showModal(msg, opts){
+  opts = opts || {};
+  document.getElementById('modalMsg').textContent = msg;
+  const overlay = document.getElementById('modalOverlay');
+  const btnsWrap = document.getElementById('modalBtns');
+  btnsWrap.innerHTML = '';
+  function close(){ overlay.style.display = 'none'; }
+  if(opts.cancelText){
+    const cancelBtn = document.createElement('button');
+    cancelBtn.type = 'button';
+    cancelBtn.textContent = opts.cancelText;
+    cancelBtn.style.cssText = 'flex:1;padding:13px;border-radius:9px;border:1.5px solid #d6dae8;background:#fff;color:var(--navy2);font-weight:700;font-size:.92rem;cursor:pointer;';
+    cancelBtn.onclick = function(){ close(); if(opts.onCancel) opts.onCancel(); };
+    btnsWrap.appendChild(cancelBtn);
+  }
+  const okBtn = document.createElement('button');
+  okBtn.type = 'button';
+  okBtn.textContent = opts.confirmText || 'OK';
+  okBtn.style.cssText = 'flex:1;padding:13px;border-radius:9px;border:none;background:var(--navy);color:#fff;font-weight:700;font-size:.92rem;cursor:pointer;';
+  okBtn.onclick = function(){ close(); if(opts.onConfirm) opts.onConfirm(); };
+  btnsWrap.appendChild(okBtn);
+  overlay.style.display = 'flex';
+}
+
+// ---------- Auto-simpan draf (localStorage) — elak kehilangan data kalau tab tertutup sebelum hantar ----------
+const DRAF_KEY = 'pusrawi_kalkulator_draf_v1';
+const DRAF_FIELDS_TEXT = ['nama','ic','idstaff','p_suami','p_isteri','p_lain',
+  'hk_dewasa_kerja','hk_dewasa_tak','j1_ipt','hk_remaja','hk_kanak712','hk_prasekolah','hk_bawah4',
+  'j1_saudara','j1_sakit','j1_oku','j1_ibu','j1_bermasalah',
+  'pb_dewasa','pb_pengasuh','pb_tambang','pb_elektrik','pb_air','pb_ipt','pb_sekolah','pb_bawah6',
+  'pb_pengangkutan','pb_kesihatan','pb_ansuran','catatanPendidikan'];
+const DRAF_RADIO_NAMES = ['rumah','rumah2','kenderaan'];
+const DRAF_CHECKBOX = ['pengakuan'];
+
+function simpanDraf(){
+  try{
+    const data = {};
+    DRAF_FIELDS_TEXT.forEach(id=>{
+      const el=document.getElementById(id);
+      if(el) data[id]=el.value;
+    });
+    DRAF_RADIO_NAMES.forEach(name=>{
+      const checked=document.querySelector('input[name="'+name+'"]:checked');
+      if(checked) data['radio_'+name]=checked.value;
+    });
+    DRAF_CHECKBOX.forEach(id=>{
+      const el=document.getElementById(id);
+      if(el) data['chk_'+id]=el.checked;
+    });
+    localStorage.setItem(DRAF_KEY, JSON.stringify(data));
+  }catch(e){}
+}
+
+function muatkanDraf(){
+  try{
+    const raw = localStorage.getItem(DRAF_KEY);
+    if(!raw) return;
+    const data = JSON.parse(raw);
+    DRAF_FIELDS_TEXT.forEach(id=>{
+      if(data[id]!==undefined){
+        const el=document.getElementById(id);
+        if(el) el.value = data[id];
+      }
+    });
+    DRAF_RADIO_NAMES.forEach(name=>{
+      const v = data['radio_'+name];
+      if(v!==undefined){
+        const el=document.querySelector('input[name="'+name+'"][value="'+v+'"]');
+        if(el) el.checked = true;
+      }
+    });
+    DRAF_CHECKBOX.forEach(id=>{
+      if(data['chk_'+id]!==undefined){
+        const el=document.getElementById(id);
+        if(el) el.checked = data['chk_'+id];
+      }
+    });
+    toggleSubmit();
+  }catch(e){}
+}
+
+function kosongkanDraf(){
+  try{ localStorage.removeItem(DRAF_KEY); }catch(e){}
+}
+
+// Butang "Kosongkan Borang" — reset semua medan & draf tersimpan.
+function kosongkanBorang(){
+  showModal('Kosongkan semua maklumat yang telah diisi dalam borang ini?\n\nTindakan ini tidak boleh dibatalkan.', {
+    confirmText: 'Ya, Kosongkan',
+    cancelText: 'Batal',
+    onConfirm: function(){
+      kosongkanDraf();
+      location.reload();
+    }
+  });
+}
+
+// Butang +/- untuk medan BIL (bilangan) — supaya senang tambah/kurang tanpa taip.
+function stepBil(id, delta){
+  const el = document.getElementById(id);
+  if(!el) return;
+  let v = parseInt(el.value, 10);
+  if(isNaN(v)) v = 0;
+  v = Math.max(0, v + delta);
+  el.value = v;
+}
+
 function toggleSubmit(){
   const btn = document.getElementById('btnKira');
   const checked = document.getElementById('pengakuan').checked;
@@ -447,6 +578,22 @@ function toggleSubmit(){
 // Boleh disemak dahulu, atau tekan "Kembali" untuk betulkan maklumat.
 function tunjukKeputusan(){
   if(!document.getElementById('pengakuan').checked) return;
+
+  if(!document.querySelector('input[name=rumah]:checked')){
+    showModal('Sila pilih Kediaman Ketua Keluarga (Seksyen 3) dahulu sebelum kira kelayakan.', {
+      confirmText: 'OK',
+      onConfirm: function(){ document.getElementById('hk_card_kediaman')?.scrollIntoView({behavior:'smooth', block:'center'}); }
+    });
+    return;
+  }
+  if(!document.querySelector('input[name=rumah2]:checked')){
+    showModal('Sila pilih Rumah Sewa/Beli (Seksyen 4) dahulu sebelum kira kelayakan.', {
+      confirmText: 'OK',
+      onConfirm: function(){ document.getElementById('pb_card_rumah')?.scrollIntoView({behavior:'smooth', block:'center'}); }
+    });
+    return;
+  }
+
   kira();
 
   document.getElementById('formView').style.display = 'none';
@@ -465,6 +612,14 @@ function kembaliEdit(){
 
 // Langkah 6: hantar sebenar ke Google Sheet.
 function hantarData(){
+  showModal('Anda pasti maklumat ini lengkap dan betul?', {
+    confirmText: 'Ya, Hantar',
+    cancelText: 'Semak Semula',
+    onConfirm: hantarDataSebenar
+  });
+}
+
+function hantarDataSebenar(){
   if(!window.dataPermohonan){ kira(); }
   window.dataPermohonan.catatanTambahan = document.getElementById('catatanPendidikan').value;
 
@@ -476,7 +631,24 @@ function hantarData(){
   document.getElementById('actionRow').style.display = 'none';
   document.getElementById('successCard').style.display = 'block';
   window.scrollTo({top:0, behavior:'smooth'});
+  kosongkanDraf();
 }
+
+// Butang "Selesai" — pastikan dulu rumusan telah dicetak/disimpan sebelum reset borang untuk pemohon baru.
+// (Maklumat SUDAH tersimpan kekal di Google Sheet sejak langkah "Sahkan & Hantar" tadi — ini hanya reset paparan borang di skrin.)
+function selesaiProses(){
+  showModal('Pastikan rumusan ini telah dicetak atau disimpan sebagai rekod sebelum teruskan.\n\nGuna telefon? Tekan "Cetak / Simpan PDF" — pada skrin cetak yang keluar, pilih "Save as PDF" untuk simpan ke telefon.', {
+    confirmText: 'Ya, Teruskan',
+    cancelText: 'Cetak/Simpan Dahulu',
+    onConfirm: function(){ location.reload(); },
+    onCancel: function(){ window.print(); }
+  });
+}
+
+// Auto-simpan draf semasa taip/pilih, dan muatkan draf tersimpan bila buka semula halaman.
+document.addEventListener('input', simpanDraf);
+document.addEventListener('change', simpanDraf);
+window.addEventListener('DOMContentLoaded', muatkanDraf);
 </script>
 
 </body>
