@@ -38,8 +38,10 @@
   .sect{padding:22px 14px 26px;}
   .sect-head{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px;}
   .sect-head .num{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;}
-  .sect-head h2{margin:0 0 3px;color:var(--navy);font-size:1.18rem;}
-  .sect-head p{margin:0;color:var(--muted);font-size:.84rem;}
+  .sect-head h2{margin:0 0 3px;color:var(--navy);font-size:1.3rem;}
+  .sect-head p{margin:0;color:var(--muted);font-size:.9rem;}
+  .sect-head p strong{color:var(--muted);font-weight:700;}
+  .org-tag{display:inline-block;background:var(--accent);color:#fff;padding:1px 9px;border-radius:6px;font-weight:800;letter-spacing:.3px;}
 
   .card{background:#fff;border-radius:14px;box-shadow:0 3px 14px rgba(13,27,76,.08);padding:18px;margin-bottom:14px;border-top:4px solid var(--accent);}
   .card h3{margin:0 0 4px;color:var(--navy);font-size:.95rem;}
@@ -100,32 +102,32 @@
 
   .print-header{display:none;}
   @media print{
-    @page{margin:8mm;size:A4;}
+    @page{margin:7mm;size:A4;}
     *{box-shadow:none !important;}
     header,footer,.no-print,#formView,#successCard{display:none !important;}
-    body{padding:0;background:#fff;font-size:.68rem;line-height:1.25;}
+    body{padding:0;background:#fff;font-size:0.74rem;line-height:1.22;}
     .wrap{max-width:100%;}
     #resultSection{display:block !important;padding:0 !important;margin:0 !important;}
     .sect{break-inside:avoid;padding:0 !important;}
-    .sect-head{margin-bottom:5px;}
-    .sect-head .num{width:20px;height:20px;font-size:.7rem;}
-    .sect-head h2{font-size:.95rem;margin:0;}
+    .sect-head{margin-bottom:8px;}
+    .sect-head .num{width:25px;height:25px;font-size:0.87rem;}
+    .sect-head h2{font-size:1.17rem;margin:0;}
     .sect-head p{display:none;}
-    .card{border:1px solid #ccc;border-top:2px solid var(--accent) !important;border-radius:4px;break-inside:avoid;margin-bottom:5px;padding:6px 8px !important;}
-    .card h3{margin:0 0 3px;font-size:.72rem;}
+    .card{border:1.5px solid #ccc;border-top:2.65px solid var(--accent) !important;border-radius:6px;break-inside:avoid;margin-bottom:10px;padding:10px 13px !important;}
+    .card h3{margin:0 0 5px;font-size:0.9rem;}
     .card h3 .hint{display:none;}
-    .result-grid{gap:5px;margin-top:3px;}
-    .stat{padding:4px 5px;border-radius:4px;}
-    .stat .lbl{font-size:.55rem;}
-    .stat .val{font-size:.78rem;margin-top:1px;}
-    .badge{padding:2px 9px;font-size:.68rem;margin-top:2px;border-radius:20px;}
-    .note{padding:4px 6px;font-size:.58rem;margin-top:4px;line-height:1.2;}
-    table.rumus{font-size:.62rem;margin-top:3px;}
-    table.rumus td{padding:2px 5px;}
-    tr.grp td{padding:2px 5px;font-size:.55rem;}
-    .print-header{display:block !important;text-align:center;border-bottom:1.5px solid #0d1b4c;padding-bottom:5px;margin-bottom:7px;}
-    .print-header h1{font-size:.85rem !important;}
-    .print-header p{font-size:.6rem !important;margin-top:2px !important;}
+    .result-grid{gap:7px;margin-top:5px;}
+    .stat{padding:7px 8px;border-radius:6px;}
+    .stat .lbl{font-size:0.66rem;}
+    .stat .val{font-size:0.97rem;margin-top:2px;}
+    .badge{padding:3px 13px;font-size:0.84rem;margin-top:3px;border-radius:20px;}
+    .note{padding:6px 10px;font-size:0.68rem;line-height:1.26;margin-top:6px;}
+    table.rumus{font-size:0.75rem;margin-top:5px;}
+    table.rumus td{padding:4px 8px;}
+    tr.grp td{padding:4px 8px;font-size:0.66rem;}
+    .print-header{display:block !important;text-align:center;border-bottom:2px solid #0d1b4c;padding-bottom:7px;margin-bottom:12px;}
+    .print-header h1{font-size:1.11rem !important;}
+    .print-header p{font-size:0.78rem !important;margin-top:3px !important;}
   }
 </style>
 </head>
@@ -173,8 +175,8 @@
 
   <div class="pair-grid">
   <!-- SEKSYEN 3 -->
-  <section class="sect" style="--accent:#6c3fa0;--accent-bg:#f5eefc;background:#f5eefc;">
-    <div class="sect-head"><div class="num">3</div><div><h2>Tanggungan Keluarga</h2><p><strong>Untuk pengiraan Had Kifayah rasmi MAIWP.</strong></p></div></div>
+  <section class="sect" style="--accent:#b8524e;--accent-bg:#fdeaea;background:#fdeaea;">
+    <div class="sect-head"><div class="num">3</div><div><h2>Tanggungan Keluarga</h2><p><strong>Untuk pengiraan Had Kifayah rasmi <span class="org-tag">MAIWP</span>.</strong></p></div></div>
 
     <div class="card" id="hk_card_kediaman">
       <h3>Kediaman Ketua Keluarga</h3><p class="sub">Pilih satu sahaja</p>
@@ -202,7 +204,6 @@
       <div class="field"><label>Sakit Kronik <span class="hint">RM260/orang — jumlah ahli keluarga/anak yang menghidap</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_sakit" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('j1_sakit',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('j1_sakit',1)">+</button></span></div></div>
       <div class="field"><label>OKU — Orang Kelainan Upaya <span class="hint">RM260/orang — jumlah ahli keluarga/anak OKU</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_oku" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('j1_oku',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('j1_oku',1)">+</button></span></div></div>
       <div class="field"><label>Ibu/Bapa Tunggal atau Tinggal <span class="hint">RM260/orang — bilangan ibu/bapa berstatus tunggal atau ditinggalkan</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_ibu" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('j1_ibu',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('j1_ibu',1)">+</button></span></div></div>
-      <div class="field"><label>Keluarga Bermasalah <span class="hint">RM260/orang — disahkan semasa semakan Jawatankuasa</span></label><div class="bil-group"><span class="prefix">BIL</span><input type="number" id="j1_bermasalah" value="0" min="0"><span class="stepper"><button type="button" class="step-btn minus" onclick="stepBil('j1_bermasalah',-1)">−</button><button type="button" class="step-btn plus" onclick="stepBil('j1_bermasalah',1)">+</button></span></div></div>
     </div>
 
     <div class="card">
@@ -216,8 +217,8 @@
   </section>
 
   <!-- SEKSYEN 4 -->
-  <section class="sect" style="--accent:#d4780c;--accent-bg:#fff4e8;background:#fff4e8;">
-    <div class="sect-head"><div class="num">4</div><div><h2>Keperluan Asas Bulanan</h2><p><strong>Perbelanjaan terperinci — asas Kategori Bantuan Wakalah PUSRAWI.</strong></p></div></div>
+  <section class="sect" style="--accent:#1a5fb4;--accent-bg:#eaf1fb;background:#eaf1fb;">
+    <div class="sect-head"><div class="num">4</div><div><h2>Keperluan Asas Bulanan</h2><p><strong>Perbelanjaan terperinci — asas Kategori Bantuan Wakalah <span class="org-tag">PUSRAWI</span>.</strong></p></div></div>
 
     <div class="card" id="pb_card_rumah">
       <h3>Rumah Sewa/Beli (Bulanan)</h3>
@@ -273,7 +274,7 @@
     <div class="sect-head"><div class="num">6</div><div><h2>Keputusan &amp; Rumusan</h2><p>Semak semula sebelum sahkan &amp; hantar.</p></div></div>
 
     <div class="card">
-      <h3>A. Status Asnaf (Had Kifayah Rasmi MAIWP)</h3>
+      <h3>A. Status Asnaf (Had Kifayah Rasmi <span class="org-tag" style="background:#b8524e;">MAIWP</span>)</h3>
       <div class="result-grid">
         <div class="stat"><div class="lbl">Jumlah Pendapatan</div><div class="val" id="r_pendapatan">RM 0</div></div>
         <div class="stat"><div class="lbl">Had Kifayah</div><div class="val" id="r_hadkifayah">RM 0</div></div>
@@ -284,7 +285,7 @@
     </div>
 
     <div class="card">
-      <h3>B. Kategori Bantuan Wakalah PUSRAWI</h3>
+      <h3>B. Kategori Bantuan Wakalah <span class="org-tag" style="background:#1a5fb4;">PUSRAWI</span></h3>
       <div class="result-grid">
         <div class="stat"><div class="lbl">Jumlah Perbelanjaan</div><div class="val" id="r_perbelanjaan">RM 0</div></div>
         <div class="stat"><div class="lbl">Baki Bersih</div><div class="val" id="r_bakibersih">RM 0</div></div>
@@ -347,7 +348,7 @@ function kira(){
     + num('hk_kanak712')*250 + num('hk_prasekolah')*230 + num('hk_bawah4')*210;
 
   const hkTambahan = num('j1_sakit')*260 + num('j1_oku')*260 + num('j1_ipt')*260 +
-      num('j1_ibu')*260 + num('j1_saudara')*260 + num('j1_bermasalah')*260;
+      num('j1_ibu')*260 + num('j1_saudara')*260;
 
   const hkKenderaan = parseFloat(document.querySelector('input[name=kenderaan]:checked').value) || 0;
 
@@ -486,7 +487,7 @@ function showModal(msg, opts){
 const DRAF_KEY = 'pusrawi_kalkulator_draf_v1';
 const DRAF_FIELDS_TEXT = ['nama','ic','idstaff','p_suami','p_isteri','p_lain',
   'hk_dewasa_kerja','hk_dewasa_tak','j1_ipt','hk_remaja','hk_kanak712','hk_prasekolah','hk_bawah4',
-  'j1_saudara','j1_sakit','j1_oku','j1_ibu','j1_bermasalah',
+  'j1_saudara','j1_sakit','j1_oku','j1_ibu',
   'pb_dewasa','pb_pengasuh','pb_tambang','pb_elektrik','pb_air','pb_ipt','pb_sekolah','pb_bawah6',
   'pb_pengangkutan','pb_kesihatan','pb_ansuran','catatanPendidikan'];
 const DRAF_RADIO_NAMES = ['rumah','rumah2','kenderaan'];
