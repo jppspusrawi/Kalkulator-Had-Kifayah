@@ -14,7 +14,7 @@
     --navy:#0d1b4c; --navy2:#152a6b; --gold:#c9a227; --gold-light:#f4e6b8;
     --red:#c0392b; --green:#1e7e34; --text:#1b1f2a; --muted:#5b6072;
   }
-  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact;}
   html{scroll-padding-top:14px;}
   body{margin:0;font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f2ede3;color:var(--text);
        padding-top:env(safe-area-inset-top,0px);padding-bottom:calc(24px + env(safe-area-inset-bottom,0px));font-size:16px;}
@@ -102,34 +102,61 @@
 
   .print-header{display:none;}
   @media print{
-    @page{margin:7mm;size:A4;}
+    @page{margin:12mm;size:A4;}
     *{box-shadow:none !important;}
     header,footer,.no-print,#formView,#successCard{display:none !important;}
     body{padding:0;background:#fff;font-size:0.74rem;line-height:1.22;}
     .wrap{max-width:100%;}
     #resultSection{display:block !important;padding:0 !important;margin:0 !important;}
     .sect{break-inside:avoid;padding:0 !important;}
-    .sect-head{margin-bottom:8px;}
-    .sect-head .num{width:25px;height:25px;font-size:0.87rem;}
+    .sect-head{margin-bottom:7px;}
+    .sect-head .num{width:22px;height:22px;font-size:0.87rem;}
     .sect-head h2{font-size:1.17rem;margin:0;}
     .sect-head p{display:none;}
-    .card{border:1.5px solid #ccc;border-top:2.65px solid var(--accent) !important;border-radius:6px;break-inside:avoid;margin-bottom:10px;padding:10px 13px !important;}
+    .card{border:1.5px solid #ccc;border-top:2.3px solid var(--accent) !important;border-radius:6px;break-inside:avoid;margin-bottom:8px;padding:8px 11px !important;}
     .card h3{margin:0 0 5px;font-size:0.9rem;}
     .card h3 .hint{display:none;}
-    .result-grid{gap:7px;margin-top:5px;}
-    .stat{padding:7px 8px;border-radius:6px;}
+    .result-grid{gap:6px;margin-top:5px;}
+    .stat{padding:6px 7px;border-radius:6px;}
     .stat .lbl{font-size:0.66rem;}
     .stat .val{font-size:0.97rem;margin-top:2px;}
-    .badge{padding:3px 13px;font-size:0.84rem;margin-top:3px;border-radius:20px;}
-    .note{padding:6px 10px;font-size:0.68rem;line-height:1.26;margin-top:6px;}
+    .badge{padding:3px 11px;font-size:0.84rem;margin-top:3px;border-radius:20px;}
+    .note{padding:6px 8px;font-size:0.68rem;line-height:1.26;margin-top:6px;}
     table.rumus{font-size:0.75rem;margin-top:5px;}
-    table.rumus td{padding:4px 8px;}
-    tr.grp td{padding:4px 8px;font-size:0.66rem;}
-    .print-header{display:block !important;text-align:center;border-bottom:2px solid #0d1b4c;padding-bottom:7px;margin-bottom:12px;}
+    table.rumus td{padding:4px 7px;}
+    tr.grp td{padding:4px 7px;font-size:0.66rem;}
+    .print-header{display:block !important;text-align:center;border-bottom:2px solid #0d1b4c;padding-bottom:6px;margin-bottom:10px;}
     .print-header h1{font-size:1.11rem !important;}
     .print-header p{font-size:0.78rem !important;margin-top:3px !important;}
   }
+  /* Same look as @media print above, but as a toggleable class — used when rendering the on-screen capture for direct PDF download (html2pdf), since that cannot rely on the print media query. */
+  body.pdf-export *{box-shadow:none !important;}
+  body.pdf-export header,body.pdf-export footer,body.pdf-export .no-print,body.pdf-export #formView,body.pdf-export #successCard{display:none !important;}
+  body.pdf-export{padding:0;background:#fff;font-size:0.74rem;line-height:1.22;}
+  body.pdf-export .wrap{max-width:100%;}
+  body.pdf-export #resultSection{display:block !important;padding:0 !important;margin:0 !important;}
+  body.pdf-export .sect{padding:0 !important;}
+  body.pdf-export .sect-head{margin-bottom:7px;}
+  body.pdf-export .sect-head .num{width:22px;height:22px;font-size:0.87rem;}
+  body.pdf-export .sect-head h2{font-size:1.17rem;margin:0;}
+  body.pdf-export .sect-head p{display:none;}
+  body.pdf-export .card{border:1.5px solid #ccc;border-top:2.3px solid var(--accent) !important;border-radius:6px;margin-bottom:8px;padding:8px 11px !important;}
+  body.pdf-export .card h3{margin:0 0 5px;font-size:0.9rem;}
+  body.pdf-export .card h3 .hint{display:none;}
+  body.pdf-export .result-grid{grid-template-columns:1fr 1fr !important;gap:6px;margin-top:5px;}
+  body.pdf-export .stat{padding:6px 7px;border-radius:6px;}
+  body.pdf-export .stat .lbl{font-size:0.66rem;}
+  body.pdf-export .stat .val{font-size:0.97rem;margin-top:2px;}
+  body.pdf-export .badge{padding:3px 11px;font-size:0.84rem;margin-top:3px;border-radius:20px;}
+  body.pdf-export .note{padding:6px 8px;font-size:0.68rem;line-height:1.26;margin-top:6px;}
+  body.pdf-export table.rumus{font-size:0.75rem;margin-top:5px;}
+  body.pdf-export table.rumus td{padding:4px 7px;}
+  body.pdf-export tr.grp td{padding:4px 7px;font-size:0.66rem;}
+  body.pdf-export .print-header{display:block !important;text-align:center;border-bottom:2px solid #0d1b4c;padding-bottom:6px;margin-bottom:10px;}
+  body.pdf-export .print-header h1{font-size:1.11rem !important;}
+  body.pdf-export .print-header p{font-size:0.78rem !important;margin-top:3px !important;}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 
@@ -309,8 +336,11 @@
       <p class="sub">Maklumat yang dinyatakan telah disahkan dan sedia untuk semakan.</p>
       <div class="note" style="text-align:left;">Sebarang permohonan rasmi mestilah melalui borang <strong>KEW.36 / KEW.45</strong> dan disertakan dokumen sokongan yang lengkap.</div>
       <div class="no-print" style="display:flex;gap:10px;margin-top:14px;">
-        <button onclick="window.print()" style="flex:1;padding:14px;border:none;border-radius:10px;background:#eef0f6;color:var(--navy);font-weight:700;cursor:pointer;">🖨️ Cetak / Simpan PDF</button>
-        <button onclick="selesaiProses()" style="flex:1;padding:14px;border:none;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;">✔️ Selesai</button>
+        <button onclick="muatTurunPDF()" id="btnDownloadPdf" style="flex:1;padding:14px;border:none;border-radius:10px;background:#eef0f6;color:var(--navy);font-weight:700;cursor:pointer;">⬇️ Muat Turun PDF</button>
+        <button onclick="window.print()" style="flex:1;padding:14px;border:none;border-radius:10px;background:#eef0f6;color:var(--navy);font-weight:700;cursor:pointer;">🖨️ Cetak</button>
+      </div>
+      <div class="no-print" style="margin-top:10px;">
+        <button onclick="selesaiProses()" style="width:100%;padding:14px;border:none;border-radius:10px;background:var(--accent);color:#fff;font-weight:700;cursor:pointer;">✔️ Selesai</button>
       </div>
     </div>
   </section>
@@ -638,12 +668,57 @@ function hantarDataSebenar(){
 // Butang "Selesai" — pastikan dulu rumusan telah dicetak/disimpan sebelum reset borang untuk pemohon baru.
 // (Maklumat SUDAH tersimpan kekal di Google Sheet sejak langkah "Sahkan & Hantar" tadi — ini hanya reset paparan borang di skrin.)
 function selesaiProses(){
-  showModal('Pastikan rumusan ini telah dicetak atau disimpan sebagai rekod sebelum teruskan.\n\nGuna telefon? Tekan "Cetak / Simpan PDF" — pada skrin cetak yang keluar, pilih "Save as PDF" untuk simpan ke telefon.', {
+  showModal('Pastikan rumusan ini telah dimuat turun/dicetak sebagai rekod sebelum teruskan.', {
     confirmText: 'Ya, Teruskan',
-    cancelText: 'Cetak/Simpan Dahulu',
+    cancelText: 'Muat Turun PDF',
     onConfirm: function(){ location.reload(); },
-    onCancel: function(){ window.print(); }
+    onCancel: function(){ muatTurunPDF(); }
   });
+}
+
+// Muat turun terus fail PDF (satu langkah) — berasingan daripada butang "Cetak" yang buka dialog cetak biasa.
+function muatTurunPDF(){
+  const btn = document.getElementById('btnDownloadPdf');
+  const asalTeks = btn ? btn.textContent : '';
+  if(btn){ btn.textContent = '⏳ Memproses...'; btn.disabled = true; }
+  const namaPemohon = (document.getElementById('nama').value || 'Pemohon').trim().replace(/[^a-zA-Z0-9]+/g,'_');
+  const namaFail = 'Rumusan_HadKifayah_' + namaPemohon + '.pdf';
+  let wrap = null;
+  function selesai(){
+    document.body.classList.remove('pdf-export');
+    if(wrap && wrap.parentNode){ wrap.parentNode.removeChild(wrap); }
+    if(btn){ btn.textContent = asalTeks; btn.disabled = false; }
+  }
+  if(typeof html2pdf === 'undefined'){
+    selesai();
+    showModal('Fungsi muat turun PDF tidak dapat dimuatkan (sambungan internet diperlukan). Sila guna butang "Cetak" dan pilih "Save as PDF" sebagai alternatif.', { confirmText: 'OK' });
+    return;
+  }
+  // Skrol ke atas dahulu — jika tidak, html2canvas memotong bahagian atas & bawah mengikut kedudukan skrol semasa.
+  const asalSkrolY = window.pageYOffset || 0;
+  document.documentElement.style.scrollBehavior = 'auto';
+  window.scrollTo(0, 0);
+  document.body.classList.add('pdf-export');
+  // Bungkus tajuk cetak + rumusan dalam satu elemen supaya tajuk turut masuk PDF.
+  wrap = document.createElement('div');
+  wrap.appendChild(document.querySelector('.print-header').cloneNode(true));
+  wrap.appendChild(document.getElementById('resultSection').cloneNode(true));
+  const opt = {
+    margin: [10, 12, 10, 12],
+    filename: namaFail,
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', scrollX: 0, scrollY: 0 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true },
+    pagebreak: { mode: ['avoid-all'] }
+  };
+  setTimeout(function(){
+    html2pdf().set(opt).from(wrap).save().then(function(){
+      selesai(); window.scrollTo(0, asalSkrolY);
+    }).catch(function(){
+      selesai(); window.scrollTo(0, asalSkrolY);
+      showModal('Muat turun PDF gagal. Sila guna butang "Cetak" dan pilih "Save as PDF" sebagai alternatif.', { confirmText: 'OK' });
+    });
+  }, 250);
 }
 
 // Auto-simpan draf semasa taip/pilih, dan muatkan draf tersimpan bila buka semula halaman.
